@@ -149,7 +149,7 @@ No separate "Get Token" step is required. Every request is independently signed.
 
 ### Skipped Endpoints
 
-The collection-level pre-request script intentionally skips HMAC signing for two endpoints:
+The collection-level pre-request script intentionally skips HMAC signing for three endpoints:
 
 | Endpoint | Reason |
 |----------|--------|
@@ -165,10 +165,12 @@ These endpoints have their own per-request pre-request scripts that handle ECDSA
 
 ### Affected Endpoints
 
-Two endpoints require an ECDSA signature over the request payload:
+Three endpoints require an ECDSA signature over the request payload:
 
 - **Approve Request** (`POST /api/rest/v1/requests/{id}/approve`)
 - **Update a Price** (`PUT /api/rest/v1/prices`)
+- **Approve a Whitelisted Address** (`PUT /api/rest/v1/whitelists/addresses/approve`)
+
 
 ### What Gets Signed
 
