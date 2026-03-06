@@ -10,6 +10,7 @@ This directory contains documentation that is common across all Taurus-PROTECT S
 | [AUTHENTICATION.md](AUTHENTICATION.md) | TPV1 authentication protocol, API credentials, security best practices |
 | [INTEGRITY_VERIFICATION.md](INTEGRITY_VERIFICATION.md) | Cryptographic verification flows for governance rules and whitelisted addresses |
 | [BUSINESS_RULES.md](BUSINESS_RULES.md) | Business rules, change approval system, entities, actions, and scopes |
+| [POSTMAN_INTEGRATION.md](POSTMAN_INTEGRATION.md) | Postman collections — Bearer and HMAC auth, setup guide, environment variables |
 | [SDK_ALIGNMENT_REPORT.md](SDK_ALIGNMENT_REPORT.md) | Cross-SDK alignment report (services, security, models, documentation) |
 
 ## SDK-Specific Documentation

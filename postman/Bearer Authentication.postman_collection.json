@@ -1,0 +1,1735 @@
+{
+  "info": {
+    "_postman_id": "450a86ff-8996-4a93-814b-2e6aa6ca78be",
+    "name": "Bearer Authentication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45779418",
+    "_collection_link": "https://go.postman.co/collection/45779418-450a86ff-8996-4a93-814b-2e6aa6ca78be?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Wallet & Addresses",
+      "item": [
+        {
+          "name": "List Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/addresses?currency=BTC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "addresses"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "BTC",
+                  "description": "Filter on IDs or symbols of the currency"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Currencies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/currencies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "currencies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Wallets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v2/wallets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v2",
+                "wallets"
+              ],
+              "query": [
+                {
+                  "key": "currencies",
+                  "value": "BTC",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Wallet",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"584737e3c4fd26fae30070d77344a8ae92bb89fee998757f6b0ee9d71ed074a1\",\n  \"name\": \"Postman Collection Example\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/wallets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "wallets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create an Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"walletId\": \"83012\",\n  \"label\": \"Postman Example Address\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Whitelist Address",
+      "item": [
+        {
+          "name": "List Whitelisted Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses?blockchain=BTC&network=mainnet",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses"
+              ],
+              "query": [
+                {
+                  "key": "blockchain",
+                  "value": "BTC",
+                  "description": "Filter on the blockchain of the WLA."
+                },
+                {
+                  "key": "network",
+                  "value": "mainnet",
+                  "description": "Name of the blockchain network, eg. mainnet, testnet, or sepolia\n\n"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Whitelisted Address",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"address\": \"bc1p39pf6p889keflak0jahaeaqxmmnl2tpdjc6x7gkfq7s92594j3xqpgwrt0\",\n    \"label\": \"Postman Example Whitelisted Address\",\n    \"blockchain\": \"BTC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Whitelisted Addresses for Approval",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses/for-approval",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses",
+                "for-approval"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve a Whitelisted Address",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "/*",
+                  "THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+                  "",
+                  "THE SOFTWARE IS PROVIDED FOR EDUCATIONAL PURPOSES ONLY, IT CANNOT BE USED IN PRODUCTION AND FOR THE PRODUCTION OF ANY PRODUCT OR PROGRAM.",
+                  "*/",
+                  "",
+                  "// ============================================================================",
+                  "// Approve Request - Pre-request Script",
+                  "// ============================================================================",
+                  "// Generates ECDSA signature and builds request body automatically",
+                  "// ",
+                  "// SETUP (once):",
+                  "// Store your EC private key in Postman Vault:",
+                  "//",
+                  "//   pm.vault.set(\"userPrivateKey\", `-----BEGIN EC PARAMETERS-----",
+                  "//   BggqhkjOPQMBBw==",
+                  "//   -----END EC PARAMETERS-----",
+                  "//   -----BEGIN EC PRIVATE KEY-----",
+                  "//   MHcCAQEEIBWyFiX9dTdYIrBCWJ...",
+                  "//   -----END EC PRIVATE KEY-----`)",
+                  "//",
+                  "",
+                  "// Get values from environment variables",
+                  "const requestId = pm.environment.get(\"requestId\");",
+                  "const requestHash = pm.environment.get(\"requestHash\");",
+                  "const comment = pm.environment.get(\"comment\") || \"Approved via API\";",
+                  "",
+                  "const privateKeyPEM = await pm.vault.get(\"userPrivateKey\");",
+                  "",
+                  "",
+                  "",
+                  "console.log(\"Generating ECDSA signature for request\", requestId);",
+                  "",
+                  "// Validate",
+                  "if (!privateKeyPEM) {",
+                  "    throw new Error(\"Private key not in vault\");",
+                  "}",
+                  "if (!requestId || !requestHash) {",
+                  "    throw new Error(\"Set requestId and requestHash\");",
+                  "}",
+                  "",
+                  "function base64ToArrayBuffer(base64) {",
+                  "    const binary = atob(base64);",
+                  "    const bytes = new Uint8Array(binary.length);",
+                  "    for (let i = 0; i < binary.length; i++) {",
+                  "        bytes[i] = binary.charCodeAt(i);",
+                  "    }",
+                  "    return bytes.buffer;",
+                  "}",
+                  "",
+                  "function arrayBufferToBase64(buffer) {",
+                  "    const bytes = new Uint8Array(buffer);",
+                  "    let binary = '';",
+                  "    for (let i = 0; i < bytes.length; i++) {",
+                  "        binary += String.fromCharCode(bytes[i]);",
+                  "    }",
+                  "    return btoa(binary);",
+                  "}",
+                  "",
+                  "// Convert SEC1 EC private key to PKCS#8 format (for crypto.subtle)",
+                  "function sec1ToPkcs8(sec1PEM) {",
+                  "    // Extract base64 from PEM",
+                  "    const sec1Base64 = sec1PEM",
+                  "        .replace(/-----BEGIN EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----END EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----BEGIN EC PARAMETERS-----[\\s\\S]*?-----END EC PARAMETERS-----/, '')",
+                  "        .replace(/\\s/g, '');",
+                  "    ",
+                  "    const sec1Der = base64ToArrayBuffer(sec1Base64);",
+                  "    const sec1Bytes = new Uint8Array(sec1Der);",
+                  "    ",
+                  "    // Build PKCS#8 wrapper for P-256",
+                  "    const algorithmLen = 21;",
+                  "    const versionLen = 3;",
+                  "    const octetStringHeaderLen = 2;",
+                  "    const sec1Len = sec1Bytes.length;",
+                  "    const contentLen = versionLen + algorithmLen + octetStringHeaderLen + sec1Len;",
+                  "    ",
+                  "    const pkcs8 = [];",
+                  "    pkcs8.push(0x30);  // SEQUENCE",
+                  "    pkcs8.push(contentLen < 128 ? contentLen : (pkcs8.push(0x81), contentLen));",
+                  "    pkcs8.push(0x02, 0x01, 0x00);  // version 0",
+                  "    pkcs8.push(0x30, 0x13);  // algorithm SEQUENCE",
+                  "    pkcs8.push(0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02, 0x01);  // ecPublicKey OID",
+                  "    pkcs8.push(0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07);  // P-256 OID",
+                  "    pkcs8.push(0x04);  // OCTET STRING",
+                  "    pkcs8.push(sec1Len < 128 ? sec1Len : (pkcs8.push(0x81), sec1Len));",
+                  "    ",
+                  "    const pkcs8Bytes = new Uint8Array(pkcs8.length + sec1Bytes.length);",
+                  "    pkcs8Bytes.set(new Uint8Array(pkcs8), 0);",
+                  "    pkcs8Bytes.set(sec1Bytes, pkcs8.length);",
+                  "    ",
+                  "    return arrayBufferToBase64(pkcs8Bytes.buffer);",
+                  "}",
+                  "",
+                  "// Detect format and convert if needed",
+                  "function prepareKey(pemString) {",
+                  "    if (pemString.includes('BEGIN EC PRIVATE KEY')) {",
+                  "        console.log(\"Converting SEC1 → PKCS#8\");",
+                  "        return sec1ToPkcs8(pemString);",
+                  "    } else if (pemString.includes('BEGIN PRIVATE KEY')) {",
+                  "        // Already PKCS#8",
+                  "        return pemString.replace(/-----BEGIN PRIVATE KEY-----/, '')",
+                  "                       .replace(/-----END PRIVATE KEY-----/, '')",
+                  "                       .replace(/\\s/g, '');",
+                  "    } else {",
+                  "        // Assume it's already base64 PKCS#8",
+                  "        return pemString.replace(/\\s/g, '');",
+                  "    }",
+                  "}",
+                  "",
+                  "(async function() {",
+                  "    try {",
+                  "        // Prepare key (convert if needed)",
+                  "        const privateKeyBase64 = prepareKey(privateKeyPEM);",
+                  "        ",
+                  "        // Import key",
+                  "        const keyBuffer = base64ToArrayBuffer(privateKeyBase64);",
+                  "        const key = await crypto.subtle.importKey(",
+                  "            \"pkcs8\",",
+                  "            keyBuffer,",
+                  "            { name: \"ECDSA\", namedCurve: \"P-256\" },",
+                  "            false,",
+                  "            [\"sign\"]",
+                  "        );",
+                  "        ",
+                  "        // Sign",
+                  "        const payload = JSON.stringify([requestHash]);",
+                  "        const encoder = new TextEncoder();",
+                  "        const data = encoder.encode(payload);",
+                  "        const signature = await crypto.subtle.sign(",
+                  "            { name: \"ECDSA\", hash: \"SHA-256\" },",
+                  "            key,",
+                  "            data",
+                  "        );",
+                  "        ",
+                  "        const signatureBase64 = arrayBufferToBase64(signature);",
+                  "        console.log(\"Signature:\", signatureBase64);",
+                  "        ",
+                  "        // Build body",
+                  "        const requestBody = {",
+                  "            ids: [requestId],",
+                  "            signature: signatureBase64,",
+                  "            comment: comment",
+                  "        };",
+                  "        ",
+                  "        pm.request.body.raw = JSON.stringify(requestBody);",
+                  "        console.log(\"Body updated\");",
+                  "        ",
+                  "    } catch (error) {",
+                  "        console.error(\"Failed:\", error.message);",
+                  "        throw error;",
+                  "    }",
+                  "})();",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses",
+                "approve"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "[\"3375\"]",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Whitelisted Address",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": \"3380\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses/delete",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses",
+                "delete"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Transaction",
+      "item": [
+        {
+          "name": "Create an Outgoing Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"5000\",\n  \"fromAddressId\": \"11383\",\n  \"toAddressId\": \"1194301\",\n  \"comment\": \"Test BTC transfer from Postman\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/requests/outgoing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "requests",
+                "outgoing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Requests for Approval",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v2/requests/for-approval?limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v2",
+                "requests",
+                "for-approval"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "/*",
+                  "THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+                  "",
+                  "THE SOFTWARE IS PROVIDED FOR EDUCATIONAL PURPOSES ONLY, IT CANNOT BE USED IN PRODUCTION AND FOR THE PRODUCTION OF ANY PRODUCT OR PROGRAM.",
+                  "*/",
+                  "",
+                  "// ============================================================================",
+                  "// Approve Request - Pre-request Script",
+                  "// ============================================================================",
+                  "// Generates ECDSA signature and builds request body automatically",
+                  "// ",
+                  "// SETUP (once):",
+                  "// Store your EC private key in Postman Vault:",
+                  "//",
+                  "//   pm.vault.set(\"userPrivateKey\", `-----BEGIN EC PARAMETERS-----",
+                  "//   BggqhkjOPQMBBw==",
+                  "//   -----END EC PARAMETERS-----",
+                  "//   -----BEGIN EC PRIVATE KEY-----",
+                  "//   MHcCAQEEIBWyFiX9dTdYIrBCWJ...",
+                  "//   -----END EC PRIVATE KEY-----`)",
+                  "//",
+                  "",
+                  "",
+                  "// Get values from environment variables",
+                  "const requestId = pm.environment.get(\"requestId\");",
+                  "const requestHash = pm.environment.get(\"requestHash\");",
+                  "const comment = pm.environment.get(\"comment\") || \"Approved via API\";",
+                  "",
+                  "const privateKeyPEM = await pm.vault.get(\"userPrivateKey\");",
+                  "",
+                  "console.log(\"Generating ECDSA signature for request\", requestId);",
+                  "",
+                  "// Validate",
+                  "if (!privateKeyPEM) {",
+                  "    throw new Error(\"Private key not in vault\");",
+                  "}",
+                  "if (!requestId || !requestHash) {",
+                  "    throw new Error(\"Set requestId and requestHash\");",
+                  "}",
+                  "",
+                  "function base64ToArrayBuffer(base64) {",
+                  "    const binary = atob(base64);",
+                  "    const bytes = new Uint8Array(binary.length);",
+                  "    for (let i = 0; i < binary.length; i++) {",
+                  "        bytes[i] = binary.charCodeAt(i);",
+                  "    }",
+                  "    return bytes.buffer;",
+                  "}",
+                  "",
+                  "function arrayBufferToBase64(buffer) {",
+                  "    const bytes = new Uint8Array(buffer);",
+                  "    let binary = '';",
+                  "    for (let i = 0; i < bytes.length; i++) {",
+                  "        binary += String.fromCharCode(bytes[i]);",
+                  "    }",
+                  "    return btoa(binary);",
+                  "}",
+                  "",
+                  "// Convert SEC1 EC private key to PKCS#8 format (for crypto.subtle)",
+                  "function sec1ToPkcs8(sec1PEM) {",
+                  "    // Extract base64 from PEM",
+                  "    const sec1Base64 = sec1PEM",
+                  "        .replace(/-----BEGIN EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----END EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----BEGIN EC PARAMETERS-----[\\s\\S]*?-----END EC PARAMETERS-----/, '')",
+                  "        .replace(/\\s/g, '');",
+                  "    ",
+                  "    const sec1Der = base64ToArrayBuffer(sec1Base64);",
+                  "    const sec1Bytes = new Uint8Array(sec1Der);",
+                  "    ",
+                  "    // Build PKCS#8 wrapper for P-256",
+                  "    const algorithmLen = 21;",
+                  "    const versionLen = 3;",
+                  "    const octetStringHeaderLen = 2;",
+                  "    const sec1Len = sec1Bytes.length;",
+                  "    const contentLen = versionLen + algorithmLen + octetStringHeaderLen + sec1Len;",
+                  "    ",
+                  "    const pkcs8 = [];",
+                  "    pkcs8.push(0x30);  // SEQUENCE",
+                  "    pkcs8.push(contentLen < 128 ? contentLen : (pkcs8.push(0x81), contentLen));",
+                  "    pkcs8.push(0x02, 0x01, 0x00);  // version 0",
+                  "    pkcs8.push(0x30, 0x13);  // algorithm SEQUENCE",
+                  "    pkcs8.push(0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02, 0x01);  // ecPublicKey OID",
+                  "    pkcs8.push(0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07);  // P-256 OID",
+                  "    pkcs8.push(0x04);  // OCTET STRING",
+                  "    pkcs8.push(sec1Len < 128 ? sec1Len : (pkcs8.push(0x81), sec1Len));",
+                  "    ",
+                  "    const pkcs8Bytes = new Uint8Array(pkcs8.length + sec1Bytes.length);",
+                  "    pkcs8Bytes.set(new Uint8Array(pkcs8), 0);",
+                  "    pkcs8Bytes.set(sec1Bytes, pkcs8.length);",
+                  "    ",
+                  "    return arrayBufferToBase64(pkcs8Bytes.buffer);",
+                  "}",
+                  "",
+                  "// Detect format and convert if needed",
+                  "function prepareKey(pemString) {",
+                  "    if (pemString.includes('BEGIN EC PRIVATE KEY')) {",
+                  "        console.log(\"Converting SEC1 → PKCS#8\");",
+                  "        return sec1ToPkcs8(pemString);",
+                  "    } else if (pemString.includes('BEGIN PRIVATE KEY')) {",
+                  "        // Already PKCS#8",
+                  "        return pemString.replace(/-----BEGIN PRIVATE KEY-----/, '')",
+                  "                       .replace(/-----END PRIVATE KEY-----/, '')",
+                  "                       .replace(/\\s/g, '');",
+                  "    } else {",
+                  "        // Assume it's already base64 PKCS#8",
+                  "        return pemString.replace(/\\s/g, '');",
+                  "    }",
+                  "}",
+                  "",
+                  "(async function() {",
+                  "    try {",
+                  "        // Prepare key (convert if needed)",
+                  "        const privateKeyBase64 = prepareKey(privateKeyPEM);",
+                  "        ",
+                  "        // Import key",
+                  "        const keyBuffer = base64ToArrayBuffer(privateKeyBase64);",
+                  "        const key = await crypto.subtle.importKey(",
+                  "            \"pkcs8\",",
+                  "            keyBuffer,",
+                  "            { name: \"ECDSA\", namedCurve: \"P-256\" },",
+                  "            false,",
+                  "            [\"sign\"]",
+                  "        );",
+                  "        ",
+                  "        // Sign",
+                  "        const payload = JSON.stringify([requestHash]);",
+                  "        const encoder = new TextEncoder();",
+                  "        const data = encoder.encode(payload);",
+                  "        const signature = await crypto.subtle.sign(",
+                  "            { name: \"ECDSA\", hash: \"SHA-256\" },",
+                  "            key,",
+                  "            data",
+                  "        );",
+                  "        ",
+                  "        const signatureBase64 = arrayBufferToBase64(signature);",
+                  "        console.log(\"Signature:\", signatureBase64);",
+                  "        ",
+                  "        // Build body",
+                  "        const requestBody = {",
+                  "            ids: [requestId],",
+                  "            signature: signatureBase64,",
+                  "            comment: comment",
+                  "        };",
+                  "        ",
+                  "        pm.request.body.raw = JSON.stringify(requestBody);",
+                  "        console.log(\"Body updated\");",
+                  "        ",
+                  "    } catch (error) {",
+                  "        console.error(\"Failed:\", error.message);",
+                  "        throw error;",
+                  "    }",
+                  "})();",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/requests/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "requests",
+                "approve"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "apionly",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"update\",\n  \"entity\": \"user\",\n  \"entityId\": \"2894\",\n  \"changes\": {\n    \"publickey\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAES78TmRsd95/qdb4Eu8MxPIjeWfxK\\n5pQl3O/0p5kTHbyx1X7UX81Twfxjcy4yXBYjG/sXCFd0i9DfWunAPG9rLw==\\n-----END PUBLIC KEY-----\"\n  },    // openssl ecparam -out private_key.pem -name prime256v1 -genkey\n        //  openssl ec -in private_key.pem -pubout -out public_key.pem\n        //   cat public_key.pem\n  \"changeComment\": \"Setting up ECDSA public key for API-only user\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/changes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "changes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Changes",
+      "item": [
+        {
+          "name": "List Changes for Approval",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/changes/for-approval",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "changes",
+                "for-approval"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Changes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/changes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "changes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve Changes",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\"66279\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/changes/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "changes",
+                "approve"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Change",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"update\",\n  \"entity\": \"user\",\n  \"entityId\": \"15\",\n  \"changes\": {\n    \"firstname\": \"firstname\"\n  },\n  \"changeComment\": \"Testing change API\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/changes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "changes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Prices",
+      "item": [
+        {
+          "name": "List Prices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/prices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "prices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Price",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "/*",
+                  "THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+                  "",
+                  "THE SOFTWARE IS PROVIDED FOR EDUCATIONAL PURPOSES ONLY, IT CANNOT BE USED IN PRODUCTION AND FOR THE PRODUCTION OF ANY PRODUCT OR PROGRAM.",
+                  "*/",
+                  "",
+                  "// Update Price Pre-request Script (Bearer Auth)",
+                  "// Generates ECDSA signature for price updates",
+                  "//",
+                  "// Setup: Store EC private key in Postman Vault as \"userPrivateKey\"",
+                  "",
+                  "// Load from environment variables",
+                  "const blockchain = pm.environment.get(\"priceBlockchain\");",
+                  "const currencyFrom = pm.environment.get(\"priceCurrencyFrom\");",
+                  "const currencyTo = pm.environment.get(\"priceCurrencyTo\");",
+                  "const rate = pm.environment.get(\"priceRate\");",
+                  "const decimals = pm.environment.get(\"priceDecimals\");",
+                  "",
+                  "(async () => {",
+                  "    const privateKeyPEM = await pm.vault.get(\"userPrivateKey\");",
+                  "    const userId = await pm.environment.get(\"username\");",
+                  "",
+                  "    console.log(`Generating signature for ${blockchain} ${currencyFrom}/${currencyTo} = ${rate}`);",
+                  "    console.log(\"User ID:\", userId);",
+                  "",
+                  "    if (!privateKeyPEM) {",
+                  "        throw new Error(\"Private key not in vault\");",
+                  "    }",
+                  "    if (!blockchain || !currencyFrom || !currencyTo || !rate || !decimals) {",
+                  "        throw new Error(\"Missing required price fields. Please set environment variables: priceBlockchain, priceCurrencyFrom, priceCurrencyTo, priceRate, priceDecimals\");",
+                  "    }",
+                  "",
+                  "    function base64ToArrayBuffer(base64) {",
+                  "        const binary = atob(base64);",
+                  "        const bytes = new Uint8Array(binary.length);",
+                  "        for (let i = 0; i < binary.length; i++) {",
+                  "            bytes[i] = binary.charCodeAt(i);",
+                  "        }",
+                  "        return bytes.buffer;",
+                  "    }",
+                  "",
+                  "    function arrayBufferToBase64(buffer) {",
+                  "        const bytes = new Uint8Array(buffer);",
+                  "        let binary = '';",
+                  "        for (let i = 0; i < bytes.length; i++) {",
+                  "            binary += String.fromCharCode(bytes[i]);",
+                  "        }",
+                  "        return btoa(binary);",
+                  "    }",
+                  "",
+                  "    // Convert SEC1 EC private key to PKCS#8 format (for crypto.subtle)",
+                  "    function sec1ToPkcs8(sec1PEM) {",
+                  "        // Extract base64 from PEM",
+                  "        const sec1Base64 = sec1PEM",
+                  "            .replace(/-----BEGIN EC PRIVATE KEY-----/, '')",
+                  "            .replace(/-----END EC PRIVATE KEY-----/, '')",
+                  "            .replace(/-----BEGIN EC PARAMETERS-----[\\s\\S]*?-----END EC PARAMETERS-----/, '')",
+                  "            .replace(/\\s/g, '');",
+                  "        ",
+                  "        const sec1Der = base64ToArrayBuffer(sec1Base64);",
+                  "        const sec1Bytes = new Uint8Array(sec1Der);",
+                  "        ",
+                  "        // Build PKCS#8 wrapper for P-256",
+                  "        const algorithmLen = 21;",
+                  "        const versionLen = 3;",
+                  "        const octetStringHeaderLen = 2;",
+                  "        const sec1Len = sec1Bytes.length;",
+                  "        const contentLen = versionLen + algorithmLen + octetStringHeaderLen + sec1Len;",
+                  "        ",
+                  "        const pkcs8 = [];",
+                  "        pkcs8.push(0x30);  // SEQUENCE",
+                  "        pkcs8.push(contentLen < 128 ? contentLen : (pkcs8.push(0x81), contentLen));",
+                  "        pkcs8.push(0x02, 0x01, 0x00);  // version 0",
+                  "        pkcs8.push(0x30, 0x13);  // algorithm SEQUENCE",
+                  "        pkcs8.push(0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02, 0x01);  // ecPublicKey OID",
+                  "        pkcs8.push(0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07);  // P-256 OID",
+                  "        pkcs8.push(0x04);  // OCTET STRING",
+                  "        pkcs8.push(sec1Len < 128 ? sec1Len : (pkcs8.push(0x81), sec1Len));",
+                  "        ",
+                  "        const pkcs8Bytes = new Uint8Array(pkcs8.length + sec1Bytes.length);",
+                  "        pkcs8Bytes.set(new Uint8Array(pkcs8), 0);",
+                  "        pkcs8Bytes.set(sec1Bytes, pkcs8.length);",
+                  "        ",
+                  "        return arrayBufferToBase64(pkcs8Bytes.buffer);",
+                  "    }",
+                  "",
+                  "    function prepareKey(pemString) {",
+                  "        if (pemString.includes('BEGIN EC PRIVATE KEY')) {",
+                  "            console.log(\"Converting SEC1 to PKCS#8\");",
+                  "            return sec1ToPkcs8(pemString);",
+                  "        } else if (pemString.includes('BEGIN PRIVATE KEY')) {",
+                  "            return pemString.replace(/-----BEGIN PRIVATE KEY-----/, '')",
+                  "                           .replace(/-----END PRIVATE KEY-----/, '')",
+                  "                           .replace(/\\s/g, '');",
+                  "        } else {",
+                  "            return pemString.replace(/\\s/g, '');",
+                  "        }",
+                  "    }",
+                  "",
+                  "    try {",
+                  "        const privateKeyBase64 = prepareKey(privateKeyPEM);",
+                  "        ",
+                  "        const keyBuffer = base64ToArrayBuffer(privateKeyBase64);",
+                  "        const cryptoKey = await crypto.subtle.importKey(",
+                  "            'pkcs8',",
+                  "            keyBuffer,",
+                  "            { name: 'ECDSA', namedCurve: 'P-256' },",
+                  "            false,",
+                  "            ['sign']",
+                  "        );",
+                  "",
+                  "        const priceData = {",
+                  "            blockchain: blockchain,",
+                  "            currencyFrom: currencyFrom,",
+                  "            currencyTo: currencyTo,",
+                  "            decimals: decimals,",
+                  "            rate: rate",
+                  "        };",
+                  "",
+                  "        const priceJson = JSON.stringify(priceData);",
+                  "        console.log(\"Price data:\", priceJson);",
+                  "",
+                  "        const encoder = new TextEncoder();",
+                  "        const dataBytes = encoder.encode(priceJson);",
+                  "",
+                  "        const signature = await crypto.subtle.sign(",
+                  "            { name: 'ECDSA', hash: 'SHA-256' },",
+                  "            cryptoKey,",
+                  "            dataBytes",
+                  "        );",
+                  "",
+                  "        const signatureBase64 = arrayBufferToBase64(signature);",
+                  "        console.log(\"Signature:\", signatureBase64);",
+                  "",
+                  "        const requestBody = {",
+                  "            prices: [{",
+                  "                blockchain: blockchain,",
+                  "                currencyFrom: currencyFrom,",
+                  "                currencyTo: currencyTo,",
+                  "                rate: rate,",
+                  "                decimals: decimals,",
+                  "                signatures: [{",
+                  "                    userId: userId,",
+                  "                    signature: signatureBase64",
+                  "                }]",
+                  "            }]",
+                  "        };",
+                  "        ",
+                  "        pm.request.body.raw = JSON.stringify(requestBody);",
+                  "      ",
+                  "",
+                  "    } catch (error) {",
+                  "        console.error(\"Error:\", error);",
+                  "        throw error;",
+                  "    }",
+                  "})();",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/prices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "prices"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Staking (Solana)",
+      "item": [
+        {
+          "name": "List Whitelisted Validators",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/whitelists/addresses?limit=40&addressType=validator&rulesContainerNormalized=true&blockchain=SOL&includeForApproval=false&network=mainnet",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "whitelists",
+                "addresses"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "40"
+                },
+                {
+                  "key": "addressType",
+                  "value": "validator"
+                },
+                {
+                  "key": "rulesContainerNormalized",
+                  "value": "true"
+                },
+                {
+                  "key": "blockchain",
+                  "value": "SOL"
+                },
+                {
+                  "key": "includeForApproval",
+                  "value": "false"
+                },
+                {
+                  "key": "network",
+                  "value": "mainnet"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List SOL Wallets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v2/wallets?currencies=da6644c9ad8307a5ea17756a86e5481d0bceda175a79891e44796ec91b2ab7b0&limit=40&onlyPositiveBalance=true",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v2",
+                "wallets"
+              ],
+              "query": [
+                {
+                  "key": "currencies",
+                  "value": "da6644c9ad8307a5ea17756a86e5481d0bceda175a79891e44796ec91b2ab7b0",
+                  "description": "SOL currency ID"
+                },
+                {
+                  "key": "limit",
+                  "value": "40"
+                },
+                {
+                  "key": "onlyPositiveBalance",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Wallet Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/addresses?walletId=456&limit=40&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "addresses"
+              ],
+              "query": [
+                {
+                  "key": "walletId",
+                  "value": "456"
+                },
+                {
+                  "key": "limit",
+                  "value": "40"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create a SOL Stake Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fromAddressId\":\"3604\",\n    \"toValidatorAddressId\":\"2454\",\n    \"amount\":\"10000000\",\n    \"comment\":\"test\"\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/requests/outgoing/sol/stake",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "requests",
+                "outgoing",
+                "sol",
+                "stake"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Staking Request Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/requests/{{requestId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "requests",
+                "{{requestId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approve Staking Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "/*",
+                  "THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+                  "",
+                  "THE SOFTWARE IS PROVIDED FOR EDUCATIONAL PURPOSES ONLY, IT CANNOT BE USED IN PRODUCTION AND FOR THE PRODUCTION OF ANY PRODUCT OR PROGRAM.",
+                  "*/",
+                  "",
+                  "// ============================================================================",
+                  "// Approve Request - Pre-request Script",
+                  "// ============================================================================",
+                  "// Generates ECDSA signature and builds request body automatically",
+                  "// ",
+                  "// SETUP (once):",
+                  "// Store your EC private key in Postman Vault:",
+                  "//",
+                  "//   pm.vault.set(\"userPrivateKey\", `-----BEGIN EC PARAMETERS-----",
+                  "//   BggqhkjOPQMBBw==",
+                  "//   -----END EC PARAMETERS-----",
+                  "//   -----BEGIN EC PRIVATE KEY-----",
+                  "//   MHcCAQEEIBWyFiX9dTdYIrBCWJ...",
+                  "//   -----END EC PRIVATE KEY-----`)",
+                  "//",
+                  "",
+                  "",
+                  "// Get values from environment variables",
+                  "const requestId = pm.environment.get(\"requestId\");",
+                  "const requestHash = pm.environment.get(\"requestHash\");",
+                  "const comment = pm.environment.get(\"comment\") || \"Approved via API\";",
+                  "",
+                  "const privateKeyPEM = await pm.vault.get(\"userPrivateKey\");",
+                  "",
+                  "console.log(\"Generating ECDSA signature for request\", requestId);",
+                  "",
+                  "// Validate",
+                  "if (!privateKeyPEM) {",
+                  "    throw new Error(\"Private key not in vault\");",
+                  "}",
+                  "if (!requestId || !requestHash) {",
+                  "    throw new Error(\"Set requestId and requestHash\");",
+                  "}",
+                  "",
+                  "function base64ToArrayBuffer(base64) {",
+                  "    const binary = atob(base64);",
+                  "    const bytes = new Uint8Array(binary.length);",
+                  "    for (let i = 0; i < binary.length; i++) {",
+                  "        bytes[i] = binary.charCodeAt(i);",
+                  "    }",
+                  "    return bytes.buffer;",
+                  "}",
+                  "",
+                  "function arrayBufferToBase64(buffer) {",
+                  "    const bytes = new Uint8Array(buffer);",
+                  "    let binary = '';",
+                  "    for (let i = 0; i < bytes.length; i++) {",
+                  "        binary += String.fromCharCode(bytes[i]);",
+                  "    }",
+                  "    return btoa(binary);",
+                  "}",
+                  "",
+                  "// Convert SEC1 EC private key to PKCS#8 format (for crypto.subtle)",
+                  "function sec1ToPkcs8(sec1PEM) {",
+                  "    // Extract base64 from PEM",
+                  "    const sec1Base64 = sec1PEM",
+                  "        .replace(/-----BEGIN EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----END EC PRIVATE KEY-----/, '')",
+                  "        .replace(/-----BEGIN EC PARAMETERS-----[\\s\\S]*?-----END EC PARAMETERS-----/, '')",
+                  "        .replace(/\\s/g, '');",
+                  "    ",
+                  "    const sec1Der = base64ToArrayBuffer(sec1Base64);",
+                  "    const sec1Bytes = new Uint8Array(sec1Der);",
+                  "    ",
+                  "    // Build PKCS#8 wrapper for P-256",
+                  "    const algorithmLen = 21;",
+                  "    const versionLen = 3;",
+                  "    const octetStringHeaderLen = 2;",
+                  "    const sec1Len = sec1Bytes.length;",
+                  "    const contentLen = versionLen + algorithmLen + octetStringHeaderLen + sec1Len;",
+                  "    ",
+                  "    const pkcs8 = [];",
+                  "    pkcs8.push(0x30);  // SEQUENCE",
+                  "    pkcs8.push(contentLen < 128 ? contentLen : (pkcs8.push(0x81), contentLen));",
+                  "    pkcs8.push(0x02, 0x01, 0x00);  // version 0",
+                  "    pkcs8.push(0x30, 0x13);  // algorithm SEQUENCE",
+                  "    pkcs8.push(0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02, 0x01);  // ecPublicKey OID",
+                  "    pkcs8.push(0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07);  // P-256 OID",
+                  "    pkcs8.push(0x04);  // OCTET STRING",
+                  "    pkcs8.push(sec1Len < 128 ? sec1Len : (pkcs8.push(0x81), sec1Len));",
+                  "    ",
+                  "    const pkcs8Bytes = new Uint8Array(pkcs8.length + sec1Bytes.length);",
+                  "    pkcs8Bytes.set(new Uint8Array(pkcs8), 0);",
+                  "    pkcs8Bytes.set(sec1Bytes, pkcs8.length);",
+                  "    ",
+                  "    return arrayBufferToBase64(pkcs8Bytes.buffer);",
+                  "}",
+                  "",
+                  "// Detect format and convert if needed",
+                  "function prepareKey(pemString) {",
+                  "    if (pemString.includes('BEGIN EC PRIVATE KEY')) {",
+                  "        console.log(\"Converting SEC1 → PKCS#8\");",
+                  "        return sec1ToPkcs8(pemString);",
+                  "    } else if (pemString.includes('BEGIN PRIVATE KEY')) {",
+                  "        // Already PKCS#8",
+                  "        return pemString.replace(/-----BEGIN PRIVATE KEY-----/, '')",
+                  "                       .replace(/-----END PRIVATE KEY-----/, '')",
+                  "                       .replace(/\\s/g, '');",
+                  "    } else {",
+                  "        // Assume it's already base64 PKCS#8",
+                  "        return pemString.replace(/\\s/g, '');",
+                  "    }",
+                  "}",
+                  "",
+                  "(async function() {",
+                  "    try {",
+                  "        // Prepare key (convert if needed)",
+                  "        const privateKeyBase64 = prepareKey(privateKeyPEM);",
+                  "        ",
+                  "        // Import key",
+                  "        const keyBuffer = base64ToArrayBuffer(privateKeyBase64);",
+                  "        const key = await crypto.subtle.importKey(",
+                  "            \"pkcs8\",",
+                  "            keyBuffer,",
+                  "            { name: \"ECDSA\", namedCurve: \"P-256\" },",
+                  "            false,",
+                  "            [\"sign\"]",
+                  "        );",
+                  "        ",
+                  "        // Sign",
+                  "        const payload = JSON.stringify([requestHash]);",
+                  "        const encoder = new TextEncoder();",
+                  "        const data = encoder.encode(payload);",
+                  "        const signature = await crypto.subtle.sign(",
+                  "            { name: \"ECDSA\", hash: \"SHA-256\" },",
+                  "            key,",
+                  "            data",
+                  "        );",
+                  "        ",
+                  "        const signatureBase64 = arrayBufferToBase64(signature);",
+                  "        console.log(\"Signature:\", signatureBase64);",
+                  "        ",
+                  "        // Build body",
+                  "        const requestBody = {",
+                  "            ids: [requestId],",
+                  "            signature: signatureBase64,",
+                  "            comment: comment",
+                  "        };",
+                  "        ",
+                  "        pm.request.body.raw = JSON.stringify(requestBody);",
+                  "        console.log(\"Body updated\");",
+                  "        ",
+                  "    } catch (error) {",
+                  "        console.error(\"Failed:\", error.message);",
+                  "        throw error;",
+                  "    }",
+                  "})();",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/rest/v1/requests/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "rest",
+                "v1",
+                "requests",
+                "approve"
+              ]
+            },
+            "description": "# Approve a Request\n\n## Overview\nThis endpoint is used to approve a specific request using ECDSA signature-based authentication.\n\n## Authentication\n- Requires a private key stored in Postman Vault\n- Generates an ECDSA signature for request approval\n\n## Request Parameters\n- `requestId`: Unique identifier of the request to be approved (required)\n- `requestHash`: Hash associated with the specific request (required)\n- `comment`: Optional comment explaining the approval\n\n## Pre-Request Script\nThe pre-request script automatically:\n1. Retrieves the private key from Postman Vault\n2. Validates the presence of required parameters\n3. Generates an ECDSA signature for the request\n\n## Usage Notes\n- Ensure the private key is correctly stored in Postman Vault before use\n- Set the `requestId`, `requestHash`, and `comment` variables in the pre-request script\n- The script will throw an error if the private key or required parameters are missing\n\n## Example\n```javascript\nconst requestId = '13923165';\nconst requestHash = '92d54d698ff3b299a21b9ea694e1c46b87556950acf1a151e016aa5abc993d94';\nconst comment = 'Approved via API';\n```\n\n## Security\n- Uses ECDSA signature for secure request approval\n- Requires proper key management and storage"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "[Click this first] (User) Bearer Authentication - Get Token",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Parse the response",
+              "const response = pm.response.json();",
+              "",
+              "// Extract and save the auth token to ENVIRONMENT",
+              "if (response.result) {",
+              "    pm.environment.set(\"authToken\", response.result);",
+              "    console.log(\"Auth token saved to environment\");",
+              "} else {",
+              "    console.error(\"No auth token in response\");",
+              "}",
+              "",
+              "// Verify the request was successful",
+              "pm.test(\"Authentication successful\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    pm.expect(response.result).to.not.be.undefined;",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/v1/authentication/token",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "v1",
+            "authentication",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "[Click this first] (Admin) Bearer Authentication - Get Token",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Parse the response",
+              "const response = pm.response.json();",
+              "",
+              "// Extract and save the auth token to ENVIRONMENT",
+              "if (response.result) {",
+              "    pm.environment.set(\"authToken\", response.result);",
+              "    console.log(\"Auth token saved to environment\");",
+              "} else {",
+              "    console.error(\"No auth token in response\");",
+              "}",
+              "",
+              "// Verify the request was successful",
+              "pm.test(\"Authentication successful\", function () {",
+              "    pm.response.to.have.status(200);",
+              "    pm.expect(response.result).to.not.be.undefined;",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{adminUsername}}\",\n  \"password\": \"{{adminPassword}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/rest/v1/authentication/token",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rest",
+            "v1",
+            "authentication",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{authToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

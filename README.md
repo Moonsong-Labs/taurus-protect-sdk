@@ -13,6 +13,7 @@ For concepts shared across all SDKs, see [docs/](docs/):
 | [Key Concepts](docs/CONCEPTS.md) | Domain model, entities, relationships, request lifecycle |
 | [Authentication](docs/AUTHENTICATION.md) | TPV1 authentication protocol, security best practices |
 | [Integrity Verification](docs/INTEGRITY_VERIFICATION.md) | Cryptographic verification flows |
+| [Postman Integration](docs/POSTMAN_INTEGRATION.md) | Postman collections — Bearer and HMAC auth, request signing setup |
 
 ### SDK-Specific Documentation
 
@@ -30,7 +31,11 @@ taurus-protect-sdk/
 ├── docs/                              # Common documentation
 │   ├── CONCEPTS.md                    # Domain model (shared)
 │   ├── AUTHENTICATION.md              # TPV1 protocol (shared)
-│   └── INTEGRITY_VERIFICATION.md      # Verification flows (shared)
+│   ├── INTEGRITY_VERIFICATION.md      # Verification flows (shared)
+│   └── POSTMAN_INTEGRATION.md         # Postman collections setup (shared)
+├── postman/                           # Postman collection files
+│   ├── Bearer Authentication.postman_collection.json
+│   └── Hmac Based Authentication.postman_collection.json
 ├── scripts/resources/                 # Shared resources
 │   ├── jars/
 │   │   └── openapi-generator-cli-7.9.0.jar
@@ -127,6 +132,21 @@ cd taurus-protect-sdk-typescript
 | **Services** | 43 | 43 | 43 | 43 |
 | **Testing** | JUnit 5 | Go testing | pytest | Jest |
 | **Static Analysis** | SpotBugs, PMD, Checkstyle | golangci-lint | black, flake8, mypy | ESLint, TypeScript |
+
+---
+
+## Postman Collections
+
+Two Postman collections are available in [`postman/`](postman/) for exploring and testing the API:
+
+| Collection | Authentication | File |
+|------------|----------------|------|
+| Bearer Authentication | Short-lived Bearer token (30-min expiry) | [`Bearer Authentication.postman_collection.json`](postman/Bearer%20Authentication.postman_collection.json) |
+| HMAC Authentication | TPV1-HMAC-SHA256 (auto-signed via pre-request script) | [`Hmac Based Authentication.postman_collection.json`](postman/Hmac%20Based%20Authentication.postman_collection.json) |
+
+Both collections cover the same endpoints: Wallet & Addresses, Whitelist Address, Transaction, Users, Changes, Prices, and Staking (Solana).
+
+**Documentation:** [docs/POSTMAN_INTEGRATION.md](docs/POSTMAN_INTEGRATION.md) — setup guide, environment variables, Postman Vault configuration, and ECDSA signing instructions.
 
 ---
 
