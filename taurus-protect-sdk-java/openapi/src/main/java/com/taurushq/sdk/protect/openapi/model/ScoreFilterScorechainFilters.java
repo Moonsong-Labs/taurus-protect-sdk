@@ -48,7 +48,7 @@ import com.taurushq.sdk.protect.openapi.JSON;
 /**
  * The risk score of Scorechain is between 0 (highest risk, bad) to 100 (lowest risk, good).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-23T15:56:06.931912+01:00[Europe/Zurich]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T08:14:18.502158138Z[GMT]", comments = "Generator version: 7.9.0")
 public class ScoreFilterScorechainFilters {
   public static final String SERIALIZED_NAME_SCORE_IN_BELOW = "scoreInBelow";
   @SerializedName(SERIALIZED_NAME_SCORE_IN_BELOW)

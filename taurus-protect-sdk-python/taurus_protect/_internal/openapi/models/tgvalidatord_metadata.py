@@ -27,8 +27,7 @@ class TgvalidatordMetadata(BaseModel):
     TgvalidatordMetadata
     """ # noqa: E501
     hash: Optional[StrictStr] = None
-    # Note: payload can be either a dict or a list depending on the API response
-    payload: Optional[Any] = None
+    payload: Optional[Dict[str, Any]] = None
     payload_as_string: Optional[StrictStr] = Field(default=None, alias="payloadAsString")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["hash", "payload", "payloadAsString"]

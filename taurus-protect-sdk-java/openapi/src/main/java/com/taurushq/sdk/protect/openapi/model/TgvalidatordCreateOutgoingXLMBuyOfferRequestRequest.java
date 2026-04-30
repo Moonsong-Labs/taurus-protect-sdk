@@ -48,7 +48,7 @@ import com.taurushq.sdk.protect.openapi.JSON;
 /**
  * Creates (or modifies an existing) XLM Buy Offer Request. Selling asset is the asset associated to the address identified by &#x60;fromAddressId&#x60;.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-23T15:56:06.931912+01:00[Europe/Zurich]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T08:14:18.502158138Z[GMT]", comments = "Generator version: 7.9.0")
 public class TgvalidatordCreateOutgoingXLMBuyOfferRequestRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)

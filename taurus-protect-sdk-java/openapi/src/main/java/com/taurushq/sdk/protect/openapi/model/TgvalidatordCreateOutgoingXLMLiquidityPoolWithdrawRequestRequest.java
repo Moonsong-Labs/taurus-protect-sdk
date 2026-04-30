@@ -48,7 +48,7 @@ import com.taurushq.sdk.protect.openapi.JSON;
 /**
  * Creates an XLM Liquidity Pool Withdraw Request to withdraw &#39;amount&#39; of shares from the liquidity pool, and at least &#39;minAmounts&#39; of asset A and B.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-23T15:56:06.931912+01:00[Europe/Zurich]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T08:14:18.502158138Z[GMT]", comments = "Generator version: 7.9.0")
 public class TgvalidatordCreateOutgoingXLMLiquidityPoolWithdrawRequestRequest {
   public static final String SERIALIZED_NAME_FROM_ADDRESS_ID = "fromAddressId";
   @SerializedName(SERIALIZED_NAME_FROM_ADDRESS_ID)

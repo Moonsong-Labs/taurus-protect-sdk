@@ -142,6 +142,11 @@ Located in `test/e2e/`, delegates config to `test/testutil/`.
 
 Integration test failures (e.g., "cannot unmarshal array") are typically API schema mismatches, not code bugs. **Unit tests are the reliable verification:** `go test ./pkg/protect/... -v`
 
+### Regen scripts assume macOS / a JDK install
+
+- `scripts/generate-openapi.sh` checks Java via `javap`, which lives in the JDK only — a JRE-only install (e.g., the bundled sonar-scanner JRE) makes the script fail before it gets to the JAR. Workaround: invoke `java -jar scripts/resources/jars/openapi-generator-cli-7.9.0.jar generate -g go -i ../scripts/resources/swagger/apis.swagger.json -o .codegen --skip-validate-spec --additional-properties=packageName=openapi --additional-properties=isGoSubmodule=true --additional-properties=enumClassPrefix=true` directly, then `cp -R .codegen/*.go internal/openapi/` (the openapi-generator-cli puts every model + api file at `.codegen/` top level for `-g go`, so the flat `cp` works).
+- `scripts/generate-proto.sh` needs `protoc` and `protoc-gen-go` on PATH. The validatord toolchain at `/workspace/tg-validatord/scripts/tools/latest/bin/` has both.
+
 ## Lessons Learned (Non-Security)
 
 ### Pagination Overflow Prevention

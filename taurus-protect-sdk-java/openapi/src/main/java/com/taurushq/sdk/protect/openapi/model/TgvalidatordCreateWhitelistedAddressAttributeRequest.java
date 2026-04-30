@@ -48,7 +48,7 @@ import com.taurushq.sdk.protect.openapi.JSON;
 /**
  * TgvalidatordCreateWhitelistedAddressAttributeRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-23T15:56:06.931912+01:00[Europe/Zurich]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T08:14:18.502158138Z[GMT]", comments = "Generator version: 7.9.0")
 public class TgvalidatordCreateWhitelistedAddressAttributeRequest {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)

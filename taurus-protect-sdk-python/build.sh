@@ -27,7 +27,24 @@ check_python_version() {
 }
 
 setup_venv() {
+    local needs_create=0
     if [[ ! -d "$VENV_DIR" ]]; then
+        needs_create=1
+    elif ! "$VENV_DIR/bin/python" -m pip --version &> /dev/null; then
+        warn "Existing $VENV_DIR is broken (pip not usable) -- recreating"
+        rm -rf "$VENV_DIR"
+        needs_create=1
+    else
+        local venv_pyver sys_pyver
+        venv_pyver=$("$VENV_DIR/bin/python" -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")' 2>/dev/null || true)
+        sys_pyver=$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+        if [[ "$venv_pyver" != "$sys_pyver" ]]; then
+            warn "Existing $VENV_DIR is for Python ${venv_pyver:-unknown} but system is $sys_pyver -- recreating"
+            rm -rf "$VENV_DIR"
+            needs_create=1
+        fi
+    fi
+    if [[ "$needs_create" -eq 1 ]]; then
         info "Creating virtual environment in $VENV_DIR..."
         python3 -m venv "$VENV_DIR"
     fi
@@ -39,7 +56,7 @@ setup_venv() {
 # Check if pip version supports PEP 660 editable installs (requires pip >= 21.3)
 check_pip_version() {
     local pip_version
-    pip_version=$(pip --version | awk '{print $2}')
+    pip_version=$(python -m pip --version | awk '{print $2}')
     local major minor
     major=$(echo "$pip_version" | cut -d. -f1)
     minor=$(echo "$pip_version" | cut -d. -f2)
@@ -57,11 +74,11 @@ install_deps() {
     setup_venv
     info "Installing dependencies..."
     if check_pip_version; then
-        pip install -e ".[dev]" -q
+        python -m pip install -e ".[dev]" -q
         info "Dependencies installed"
     else
         warn "Falling back to non-editable install"
-        pip install ".[dev]" -q
+        python -m pip install ".[dev]" -q
         info "Dependencies installed (non-editable mode)"
     fi
 }

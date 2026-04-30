@@ -230,3 +230,16 @@ All SDKs must use the v2 API endpoint for listing business rules (`ruleServiceGe
 - Service naming — always singular: BusinessRuleService, WebhookCallService
 - All SDKs use 6-step address verification (Step 6: Parse WhitelistedAddress from verified payload)
 - Cross-references in common docs must include ALL 4 SDKs
+
+## Shared Proto Schema (`scripts/resources/proto/schema/v1/`)
+
+All four SDK proto generators (`taurus-protect-sdk-{go,java,python,typescript}/scripts/generate-proto.sh`) read from this directory. A missing source breaks every SDK simultaneously, because `authentication-service.proto` and `steward-service.proto` import from sibling files via plain names (no package path).
+
+Convention for files copied in from `tg-validatord/api/proto/v1/`:
+- Strip `option go_package = "github.com/taurusgroup/tg-validatord/...";`
+- Add `option java_package = "com.taurushq.sdk.protect.proto.v1";`
+- All other content (messages, field numbers) stays byte-for-byte identical.
+
+The dir must contain at minimum: `apikey.proto` (defines `ApiKey`, `ApiKeyToken`) and `credentials.proto` (defines `Credentials`, `SAMLAuthRequest`, `SAMLAuthRedirect`, `SAMLSession`, `OIDCLocation`, `OIDCSession`). Both are imported by sibling protos but are easy to omit when copying schemas across — if you ever see `undefined: <Type>` errors for these names in any SDK, the proto source is missing here.
+
+The shared swagger at `scripts/resources/swagger/apis.swagger.json` is independent of this dir and contains the openapi-side definitions for the same domain (e.g., `tgvalidatordCredentials`, `StewardServiceCreateApiKeyBody`).
