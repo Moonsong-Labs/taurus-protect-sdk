@@ -48,7 +48,7 @@ import com.taurushq.sdk.protect.openapi.JSON;
 /**
  * Creates an XLM Revoke Sponsorship Request. If &#x60;toAddressId or &#x60;toWhitelistedAddressId&#x60; is set, only one between &#x60;dataName&#x60;, &#x60;assetID&#x60; and &#x60;offerID&#x60; can be set. If not, &#x60;claimableBalanceID&#x60; shall be set.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-23T15:56:06.931912+01:00[Europe/Zurich]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T08:14:18.502158138Z[GMT]", comments = "Generator version: 7.9.0")
 public class TgvalidatordCreateOutgoingXLMRevokeSponsorshipRequestRequest {
   public static final String SERIALIZED_NAME_FROM_ADDRESS_ID = "fromAddressId";
   @SerializedName(SERIALIZED_NAME_FROM_ADDRESS_ID)

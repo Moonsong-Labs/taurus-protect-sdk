@@ -217,6 +217,16 @@ E2E tests are in `tests/e2e/`, with `conftest.py` delegating to testutil (uses `
 
 ## Build Troubleshooting
 
+### `generate-openapi.sh` Pydantic-fix sed is macOS-only
+
+Line 116 of `scripts/generate-openapi.sh` uses `sed -i '' 's/.../.../' file` (BSD sed). On Linux GNU sed treats the `''` as the input file path and prints `sed: can't read s/...` for every model file. The script **continues anyway** and reports success, but the Pydantic v2 fix never lands and the SDK fails at runtime with `RuntimeError: Unable to apply constraint 'strict' to schema of type 'none'`.
+
+Workaround on Linux until the script is fixed: re-run the Pydantic patch manually after the script:
+```bash
+find taurus_protect/_internal/openapi/models -name "*.py" -exec sed -i \
+  's/Optional\[Union\[Annotated\[bytes, Field(strict=True)\], Annotated\[str, Field(strict=True)\]\]\]/Optional[Union[bytes, str]]/g' {} \;
+```
+
 ### Python SDK with older pip
 
 The `build.sh` script automatically detects pip < 21.3 and falls back to non-editable install mode. You'll see a warning:

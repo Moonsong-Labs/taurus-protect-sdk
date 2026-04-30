@@ -70,10 +70,13 @@ client.taurusNetwork().sharing()        // Address/Asset sharing
 - Uses `openapi-generator-cli` JAR (7.9.0) with `-g java`
 - Generated types prefixed with `Tgvalidatord`
 - Requires Java 11+ runtime
+- `scripts/generate-openapi.sh` calls `patch` (BSD/GNU `patch` binary) to apply `scripts/openapi-tpv1.patch` to the regenerated `ApiClient.java`. The patch (1) collapses 4 `auth.*` imports into a wildcard, (2) replaces `new ApiKeyAuth("header","Authorization")` with `new ApiKeyTPV1Auth()` in both constructors, and (3) inserts `setApiKeyTPV1`/`setApiSecretTPV1` helper methods. If `patch` is missing, apply by hand — the diff is tiny.
+- **`auth/ApiKeyTPV1Auth.java` and `auth/ApiKeyTPV1Exception.java` are committed files, not regenerated.** They are referenced by `ApiClientTPV1.java` and by the patched `ApiClient.java` (the `scripts/openapi-tpv1.patch` only renames references — it never recreates the helpers). Treat them as part of the SDK source. They were once deleted in `e4500b2 cleanup` and had to be restored from `873e982`; do not re-delete them under a "looks generated" assumption.
 
 ### Protobuf
 - Uses `protoc` directly
 - Generated classes flattened to proto module
+- **Runtime is `protobuf-java 4.29.3` (`pom.xml:protobuf-version`).** This requires `protoc >= 21` to generate compatible Java code. Older `protoc` (≤3.20.x) emits removed APIs (`makeExtensionsImmutable()`, `Address.newLongList()`) and `mvn compile` fails on the proto module with "cannot find symbol" errors. The validatord toolchain at `/workspace/tg-validatord/scripts/tools/latest/bin/protoc` is too old; download a newer protoc release from `https://github.com/protocolbuffers/protobuf/releases` and put it earlier on PATH before regen.
 
 ## Static Analysis
 
@@ -135,6 +138,43 @@ export PROTECT_API_SECRET="your-secret"
 - `PROTECT_API_HOST` - API host URL
 - `PROTECT_API_KEY` - API key
 - `PROTECT_API_SECRET` - API secret (hex-encoded)
+
+### JDK 9+ surefire add-opens (JDK-conditional)
+
+`ApiExceptionMapperTest` deserializes JSON into `com.taurushq.sdk.protect.client.model.ApiException` via Gson. `ApiException extends Exception`, so Gson reflects into `java.lang.Throwable.detailMessage` — fine on JDK 8, but JDK 9+ strong encapsulation refuses it without an explicit add-opens flag.
+
+**The argLine is gated by a JDK profile**, not added to the main surefire config, because the JDK 8 launcher rejects the flag (`Unrecognized option: --add-opens` → "Could not create the Java Virtual Machine") and would crash every test fork on systems where `java` is JDK 8. The build script's `MIN_JAVA_VERSION=8` plus the user's listed Corretto-8 setup mean JDK 8 is a supported target.
+
+Lives in `client/pom.xml` as a profile activated by `<jdk>[9,)</jdk>`:
+
+```xml
+<profiles>
+  <profile>
+    <id>jdk9-plus-add-opens</id>
+    <activation>
+      <jdk>[9,)</jdk>
+    </activation>
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+  </profile>
+</profiles>
+```
+
+Verify activation with `mvn help:active-profiles -pl client` → expect `jdk9-plus-add-opens` listed on JDK 9+ and absent on JDK 8.
+
+Symptoms:
+- Argline not gated, run on JDK 8 → `Unrecognized option: --add-opens` and `The forked VM terminated without properly saying goodbye`.
+- Argline missing on JDK 17+ → `JsonIO Failed making field 'java.lang.Throwable#detailMessage' accessible` on 5 `ApiExceptionMapperTest` cases.
+
+**XML comment gotcha:** the literal string `--` is forbidden inside an XML comment, so a `pom.xml` comment like `<!-- explains --add-opens -->` is a parse error. Maven reports `Non-parseable POM ... in comment after two dashes (--) next character must be > not a`. Spell the flag out in prose ("the add-opens flag") rather than embedding the literal CLI form.
 
 ### Model Field Reference
 

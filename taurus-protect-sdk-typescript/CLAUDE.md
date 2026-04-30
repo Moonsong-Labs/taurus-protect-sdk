@@ -81,6 +81,14 @@ Uses `openapi-generator-cli` JAR (7.9.0) with `-g typescript-fetch`. Types prefi
 
 Uses `protoc` with `ts-proto` plugin. Excluded from build due to import path issues.
 
+**Imports stay un-flattened after `generate-proto.sh`.** ts-proto generates relative imports based on the original proto directory layout (e.g., `import { CommitmentKind } from "./tp_messages/commitments";` for `request_reply.proto`). The script's flatten step moves the file but leaves the import path intact, breaking `tsc` even though `tsconfig.json` excludes `src/internal/proto/request*.ts` from compilation — TypeScript still reads referenced files during dep resolution. Run after the regen:
+
+```bash
+sed -i 's|from "\./tp_messages/|from "./|g' src/internal/proto/*.ts
+```
+
+Currently only `tp_messages/commitments.proto` ships as a non-Google subdir import; Google well-known imports (`./google/protobuf/timestamp` etc.) stay nested correctly because ts-proto resolves those via `node_modules`.
+
 ## Common Implementation Notes
 
 ### OpenAPI Type Naming Conventions

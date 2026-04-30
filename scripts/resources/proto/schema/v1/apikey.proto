@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package tgvalidatord;
+
+option java_package = "com.taurushq.sdk.protect.proto.v1";
+
+import "google/protobuf/timestamp.proto";
+
+message ApiKey {
+    string id = 1;
+    uint64 tenantId = 2;
+    google.protobuf.Timestamp expirationDate = 3;
+    google.protobuf.Timestamp creationDate = 4;
+}
+
+message ApiKeyToken {
+    ApiKey apiKey = 1;
+    string token = 2;
+}
