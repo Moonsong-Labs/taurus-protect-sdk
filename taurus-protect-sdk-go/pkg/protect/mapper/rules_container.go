@@ -91,6 +91,34 @@ func RuleMessageBase64FromJSON(messageType string, jsonData []byte) (string, err
 	return base64.StdEncoding.EncodeToString(data), nil
 }
 
+// RuleMessageJSONFromBase64 decodes a base64-encoded protobuf rule message
+// back into canonical protobuf JSON. This is the reverse of RuleMessageBase64FromJSON.
+// Returns nil, nil for empty input (empty cells mean "match any").
+func RuleMessageJSONFromBase64(messageType string, base64Data string) (json.RawMessage, error) {
+	if strings.TrimSpace(base64Data) == "" {
+		return nil, nil
+	}
+	data, err := base64.StdEncoding.DecodeString(base64Data)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode base64: %w", err)
+	}
+	if len(data) == 0 {
+		return nil, nil
+	}
+	message, err := newGovernanceRuleMessage(messageType)
+	if err != nil {
+		return nil, err
+	}
+	if err := proto.Unmarshal(data, message); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal %s protobuf: %w", strings.TrimSpace(messageType), err)
+	}
+	jsonData, err := protojson.Marshal(message)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal %s JSON: %w", strings.TrimSpace(messageType), err)
+	}
+	return jsonData, nil
+}
+
 func newGovernanceRuleMessage(messageType string) (proto.Message, error) {
 	name := strings.TrimSpace(messageType)
 	if name == "" {
