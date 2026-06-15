@@ -299,6 +299,10 @@ type ListRequestsOptions struct {
 	Status string
 	// Currency filters by currency.
 	Currency string
+	// FromDate filters by request creation date.
+	FromDate *time.Time
+	// ToDate filter	s by request creation date.
+	ToDate *time.Time
 }
 
 // RequestResult contains the result of a paginated request list query.

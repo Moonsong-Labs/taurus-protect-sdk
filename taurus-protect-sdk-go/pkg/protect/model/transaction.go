@@ -74,6 +74,10 @@ type ListTransactionsOptions struct {
 	Blockchain string
 	// Query searches transaction fields.
 	Query string
+	// FromDate filters by transaction creation date.
+	FromDate *time.Time
+	// ToDate filters by transaction creation date.
+	ToDate *time.Time
 }
 
 // ListTransactionsByAddressOptions contains options for listing transactions by address.
