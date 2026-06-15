@@ -53,6 +53,9 @@ func (s *TransactionService) ListTransactions(ctx context.Context, opts *model.L
 		if opts.ToDate != nil {
 			req = req.To(*opts.ToDate)
 		}
+		if opts.Network != "" {
+			req = req.Network(opts.Network)
+		}
 	}
 
 	resp, httpResp, err := req.Execute()
