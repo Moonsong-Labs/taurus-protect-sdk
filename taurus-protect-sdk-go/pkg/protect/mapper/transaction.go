@@ -20,6 +20,7 @@ func TransactionFromDTO(dto *openapi.TgvalidatordTransaction) *model.Transaction
 		Type:           safeString(dto.Type),
 		Currency:       safeString(dto.Currency),
 		Blockchain:     safeString(dto.Blockchain),
+		Network:        safeString(dto.Network),
 		Amount:         safeString(dto.Amount),
 		AmountMainUnit: safeString(dto.AmountMainUnit),
 		Fee:            safeString(dto.Fee),

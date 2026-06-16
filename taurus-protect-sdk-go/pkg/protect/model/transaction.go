@@ -20,6 +20,8 @@ type Transaction struct {
 	Currency string `json:"currency"`
 	// Blockchain is the blockchain name (ETH, BTC, etc.).
 	Blockchain string `json:"blockchain,omitempty"`
+	// Network is the network the transaction took place in (e.g. mainnet, testnet).
+	Network string `json:"network,omitempty"`
 	// Amount is the transaction amount in smallest currency unit.
 	Amount string `json:"amount"`
 	// AmountMainUnit is the amount in main currency unit.
@@ -72,8 +74,14 @@ type ListTransactionsOptions struct {
 	Direction string
 	// Blockchain filters by blockchain.
 	Blockchain string
+	// Network filters by network.
+	Network string
 	// Query searches transaction fields.
 	Query string
+	// FromDate filters by transaction creation date.
+	FromDate *time.Time
+	// ToDate filters by transaction creation date.
+	ToDate *time.Time
 }
 
 // ListTransactionsByAddressOptions contains options for listing transactions by address.
