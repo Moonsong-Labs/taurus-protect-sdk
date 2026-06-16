@@ -47,6 +47,12 @@ func (s *TransactionService) ListTransactions(ctx context.Context, opts *model.L
 		if opts.Query != "" {
 			req = req.Query(opts.Query)
 		}
+		if opts.From != nil {
+			req = req.From(*opts.From)
+		}
+		if opts.To != nil {
+			req = req.To(*opts.To)
+		}
 	}
 
 	resp, httpResp, err := req.Execute()

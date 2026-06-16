@@ -74,6 +74,10 @@ type ListTransactionsOptions struct {
 	Blockchain string
 	// Query searches transaction fields.
 	Query string
+	// From filters transactions received at or after this time.
+	From *time.Time
+	// To filters transactions received at or before this time.
+	To *time.Time
 }
 
 // ListTransactionsByAddressOptions contains options for listing transactions by address.
