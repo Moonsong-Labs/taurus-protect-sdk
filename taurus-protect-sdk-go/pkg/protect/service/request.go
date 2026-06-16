@@ -94,6 +94,12 @@ func (s *RequestService) ListRequests(ctx context.Context, opts *model.ListReque
 		if opts.Currency != "" {
 			req = req.CurrencyID(opts.Currency)
 		}
+		if opts.From != nil {
+			req = req.From(*opts.From)
+		}
+		if opts.To != nil {
+			req = req.To(*opts.To)
+		}
 	}
 
 	resp, httpResp, err := req.Execute()
